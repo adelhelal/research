@@ -37,13 +37,10 @@ SELECT
   fill.traderId AS `trader_id`,
   fill.contractFill.id AS `contract_fill_id`,
   fill.contractFill.price AS `contract_fill_price`,
-  fill.contractFill.arbPrice AS `contract_fill_arb_price`,
   fill.contractFill.volume AS `contract_fill_volume`,
-  fill.contractFill.venueMic AS `contract_fill_venue_mic`,
   CAST(${batch_id} AS BIGINT) AS batch_id,
   CAST(date_format(current_timestamp(), 'yyyyMMddHHmmss') AS BIGINT) AS `cdh_ingestion_time`,
-  element_at(split(input_file_name(), '/'), -1) AS filename,
-  CAST(${load_date} as INT) AS load_date
+  element_at(split(input_file_name(), '/'), -1) AS filename
 FROM 
   cgm_marx_felix_frost_orders_raw
 LATERAL VIEW OUTER
