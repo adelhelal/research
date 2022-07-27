@@ -30,7 +30,7 @@ synchronized (mutex) {
 Ingestion of json file with an array of `eventOriginal.fills` into s3 parquet file
 ```sql
 steps:
-  - dataFrameName: cgm_marx_felix_frost_orders
+  - dataFrameName: cgm_marx_felix_frost_order_fills
     sql: 
       SELECT 
         CAST(eventOriginal.id AS BIGINT) AS `order_id`,
@@ -49,6 +49,7 @@ steps:
       LATERAL VIEW OUTER
         explode(eventOriginal.fills) AS fill
 
+output:
 - dataFrameName: cgm_marx_felix_frost_order_fills
     outputType: File
     format: parquet
