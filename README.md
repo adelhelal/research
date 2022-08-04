@@ -26,6 +26,25 @@ synchronized (mutex) {
 - data-oriented
   - Records, sealed interfaces, pattern matching
 
+# Javascript
+
+### Web Workers
+```javascipt
+// main.js
+const worker = new Worker('worker.js');
+worker.postMessage([5, 4]);
+
+worker.onmessage = function(e) {
+  console.log(e.data); // prints 9
+}
+
+// worker.js
+onmessage = function(e) {
+  const result = e.data[0] + e.data[1];
+  postMessage(result);
+}
+```
+
 # Impala
 Ingestion of json file with an array of `eventOriginal.fills` into s3 parquet file
 ```sql
