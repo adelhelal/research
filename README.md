@@ -106,3 +106,7 @@ STORED AS PARQUET LOCATION 's3a://${s3BasePath}/s3_file_path';
 5. Train model
 6. Make prediction
 7. Evaluate and improve
+
+# Quantum Programming
+* Q# (.NET quantum programming framework)
+* Cirq (Google open source quantum programming framework)
