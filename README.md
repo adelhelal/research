@@ -61,7 +61,7 @@ steps:
         fill.contractFill.price AS `contract_fill_price`,
         fill.contractFill.volume AS `contract_fill_volume`,
         CAST(${batch_id} AS BIGINT) AS batch_id,
-        CAST(date_format(current_timestamp(), 'yyyyMMddHHmmss') AS BIGINT) AS `cdh_ingestion_time`,
+        CAST(date_format(current_timestamp(), 'yyyyMMddHHmmss') AS BIGINT) AS `ingestion_time`,
         element_at(split(input_file_name(), '/'), -1) AS filename
       FROM 
         cgm_marx_felix_frost_orders_raw
@@ -78,7 +78,7 @@ output:
       protectFromEmptyOutput: false
       partitionBy:
         - batch_id
-        - cdh_ingestion_time
+        - ingestion_time
 ```
 Import from parquet file into table
 ```sql
@@ -92,9 +92,9 @@ CREATE EXTERNAL TABLE IF NOT EXISTS cgm_${db_ext}.order_fills (
     `trader_id` STRING,
     `contract_fill_id` INT,
     `contract_fill_price` INT,
-    `contract_fill_volume` INT)
-    PARTITIONED BY (batch_id BIGINT, cdh_ingestion_time BIGINT, load_date INT)
-    STORED AS PARQUET LOCATION 's3a://${s3BasePath}/s3_file_path';
+    `contract_fill_volume` INT
+) PARTITIONED BY (batch_id BIGINT, ingestion_time BIGINT, load_date INT)
+STORED AS PARQUET LOCATION 's3a://${s3BasePath}/s3_file_path';
 ```
 
 # Machine Learning
