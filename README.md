@@ -69,16 +69,16 @@ steps:
         explode(eventOriginal.fills) AS fill
 
 output:
-- dataFrameName: cgm_marx_felix_frost_order_fills
-    outputType: File
-    format: parquet
-    outputOptions:
-      saveMode: Append
-      path: s3_file_path
-      protectFromEmptyOutput: false
-      partitionBy:
-        - batch_id
-        - ingestion_time
+  - dataFrameName: cgm_marx_felix_frost_order_fills
+      outputType: File
+      format: parquet
+      outputOptions:
+        saveMode: Append
+        path: s3_file_path
+        protectFromEmptyOutput: false
+        partitionBy:
+          - batch_id
+          - ingestion_time
 ```
 Import from parquet file into table
 ```sql
