@@ -29,7 +29,7 @@ synchronized (mutex) {
 # Javascript
 
 ### Web Workers
-```javascipt
+```javascript
 // main.js
 const worker = new Worker('worker.js');
 worker.postMessage([5, 4]);
