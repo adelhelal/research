@@ -83,7 +83,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS orders (
     `order_id` STRING,
     `order_version` INT,
     `order_source` STRING,
-) PARTITIONED BY (batch_id BIGINT, ingestion_time BIGINT, load_date INT)
+) PARTITIONED BY (batch_id BIGINT, process_time BIGINT, load_date INT)
 STORED AS PARQUET LOCATION 's3a://${s3BasePath}/s3_file_path';
 ```
 
