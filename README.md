@@ -46,30 +46,25 @@ onmessage = function(e) {
 ```
 
 # Impala
-Ingestion of json file with an array of `eventOriginal.fills` into s3 parquet file
+Ingestion of json file with an array of `order.items` into s3 parquet file
 ```sql
 steps:
-  - dataFrameName: cgm_marx_felix_frost_order_fills
+  - dataFrameName: orders_dataframe
     sql: 
       SELECT 
-        CAST(eventOriginal.id AS BIGINT) AS `order_id`,
-        eventOriginal.version AS `order_version`,
-        enrichedData.orderSource AS `order_source`,
-        fill.id AS `fill_id`,
-        fill.traderId AS `trader_id`,
-        fill.contractFill.id AS `contract_fill_id`,
-        fill.contractFill.price AS `contract_fill_price`,
-        fill.contractFill.volume AS `contract_fill_volume`,
+        CAST(order.id AS BIGINT) AS `order_id`,
+        order.version AS `order_version`,
+        order.source AS `order_source`,
+        item.id AS `item_id`,
         CAST(${batch_id} AS BIGINT) AS batch_id,
-        CAST(date_format(current_timestamp(), 'yyyyMMddHHmmss') AS BIGINT) AS `ingestion_time`,
-        element_at(split(input_file_name(), '/'), -1) AS filename
+        CAST(date_format(current_timestamp(), 'yyyyMMddHHmmss') AS BIGINT) AS `process_time`
       FROM 
-        cgm_marx_felix_frost_orders_raw
+        order_raw
       LATERAL VIEW OUTER
-        explode(eventOriginal.fills) AS fill
+        explode(order.items) AS item
 
 output:
-  - dataFrameName: cgm_marx_felix_frost_order_fills
+  - dataFrameName: orders_dataframe
       outputType: File
       format: parquet
       outputOptions:
@@ -78,21 +73,16 @@ output:
         protectFromEmptyOutput: false
         partitionBy:
           - batch_id
-          - ingestion_time
+          - process_time
 ```
 Import from parquet file into table
 ```sql
 
-DROP TABLE if exists cgm_${db_ext}.order_fills;
-CREATE EXTERNAL TABLE IF NOT EXISTS cgm_${db_ext}.order_fills (
+DROP TABLE if exists orders;
+CREATE EXTERNAL TABLE IF NOT EXISTS orders (
     `order_id` STRING,
     `order_version` INT,
     `order_source` STRING,
-    `fill_id` INT,
-    `trader_id` STRING,
-    `contract_fill_id` INT,
-    `contract_fill_price` INT,
-    `contract_fill_volume` INT
 ) PARTITIONED BY (batch_id BIGINT, ingestion_time BIGINT, load_date INT)
 STORED AS PARQUET LOCATION 's3a://${s3BasePath}/s3_file_path';
 ```
