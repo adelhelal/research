@@ -34,7 +34,7 @@ steps:
         order.version AS `order_version`,
         order.source AS `order_source`,
         item.id AS `item_id`,
-        CAST(${batch_id} AS BIGINT) AS batch_id,
+        123 AS batch_id,
         CAST(date_format(current_timestamp(), 'yyyyMMddHHmmss') AS BIGINT) AS `process_time`
       FROM 
         order_raw
@@ -61,8 +61,8 @@ CREATE EXTERNAL TABLE IF NOT EXISTS orders (
     `order_id` STRING,
     `order_version` INT,
     `order_source` STRING,
-) PARTITIONED BY (batch_id BIGINT, process_time BIGINT, load_date INT)
-STORED AS PARQUET LOCATION 's3a://${s3BasePath}/s3_file_path';
+) PARTITIONED BY (batch_id BIGINT, process_time BIGINT)
+STORED AS PARQUET LOCATION 's3a://s3_bucket/s3_file_path';
 ```
 
 # Machine Learning
