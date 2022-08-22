@@ -34,7 +34,7 @@ steps:
         order.version AS `order_version`,
         order.source AS `order_source`,
         item.id AS `item_id`,
-        123 AS batch_id,
+        123 AS `batch_id`,
         CAST(date_format(current_timestamp(), 'yyyyMMddHHmmss') AS BIGINT) AS `process_time`
       FROM 
         order_raw
