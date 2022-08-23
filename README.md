@@ -1,8 +1,35 @@
+# Object Oriented Programming
+
+### SOLID Principle
+- Single Responsibility principle - e.g. customer class shouldn't use logging functionality
+- Open/closed principle - e.g. conditions of a type shouldn't be updated in another class
+- Liskov substitution principle - e.g. implement interface instead of inheritance if necessary
+- Interface segregation principle - e.g. Implement multiple interfaces, instead of empty functions
+- Dependency inversion principle - e.g. constructor passes in interface of ILogger
+
+### Concepts
+
+- Encapsulation - Private Methods
+- Inheritance - `Class : BaseClass, Interface`
+- Polymorphism
+  - Method Overriding (run-time) or Method Overloading (compile-time);
+  - Assign instance of Derived to a variable of type Base
+- Abstraction - Abstract Classes
+- Aggregation - child class can exist independently of the parent class
+- Composition - child class cannot exist independently of the parent class
+- Composibility - reusable components/functions/libraries
+- Coupling - A class that relies on another class so changes affect both
+- Cohesion
+  - High cohesion a class is focused on what it should be doing
+  - Low cohesion a class does a great variety of actions, broad
+
 # Programming Paradigms
+
 - strongly-typed vs weakly-typed
   - strongly-typed = "1" + 2 will result in a type error
   - weakly-typed = "1" + 2 = "12" - "type-coercion" (implicit conversion of data types)
 - static type checking (compile time) vs dynamic type checking (runtime)
+- Imperative Programming (OOP)
 
 # Javascript
 
