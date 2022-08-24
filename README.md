@@ -145,6 +145,14 @@
   7. Transport cost is zero
   8. The network is homogeneous
 
+* Service Mesh (Networking)
+  * moving networking-related concerns from the service containing the business logic, outside and into a separate runtime
+  * advanced release strategies, advanced routing, managing security, metrics, tracing, recovery from errors, simulating errors without touching the service, application-specific protocols
+
+- Service Mesh evolution
+
+![Service Mesh](resources/service.mesh.png)
+
 # Javascript
 
 ### Web Workers
