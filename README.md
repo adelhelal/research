@@ -153,6 +153,28 @@
 
 ![Service Mesh](resources/service.mesh.png)
 
+* Data Mesh
+
+![Data Mesh](resources/data.mesh.png)
+
+- Fine-grained fully federated
+  - Purest form - agile, cloud based
+  - highly skilled engineers
+- Fine-grained fully governed
+  - quality and compliance over agility
+  - financial institutions and governments
+- Hybrid federated
+  - Organisations with legacy systems
+  - Lack highly skilled engineers
+- Value chain-aligned
+  - Organizations in supply-chain management, product development, or transportation industries
+- Coarse grained aligned
+  - Large-scale organizations 
+  - Complex architectures with many applications require multiple governance levels
+- Coarse grained and governed
+  - Large-scale organizations
+  - Overcome complexity, peer-to-peer distribution
+
 # Javascript
 
 ### Web Workers
