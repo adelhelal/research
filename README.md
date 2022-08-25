@@ -111,6 +111,7 @@
         - Enterprise Business Rules (Entities)
 
 # Distributed Systems
+
 - CAP Theorem (NoSql trade-offs)
   - Consistency (all nodes return the same data) most recent write guaranteed
     - MongoDB, Redis, HBase
@@ -174,6 +175,91 @@
 - Coarse grained and governed
   - Large-scale organizations
   - Overcome complexity, peer-to-peer distribution
+
+# Microservices
+
+- Service Discovery
+  - Client-side discovery using a Service Registry
+  - Server-side discovery using a Load Balancer
+  - Storing service information
+    - CP - Consistency & Partition Tolerance (Zookeeper, etcd, Consul)
+    - AP - Availability & Partition Tolerance (Cassandra, Riak)
+- API Management
+  - Versioning (Anti-Corruption Layer)
+  - API Gateway Services (one task routed to one service maintaining different service requests)
+- Communication
+  - Point-to-point (standard client-server communication)
+  - Publish-subscribe (Spark Streaming, Kafka, Amazon Kinesis, Azure Stream Analytics, Solace)
+- Integration with the outside world
+  - Synchronous callbacks - strong coupling
+  - Avoiding cascading failures
+    - Back-pressure - velocity of flow of data (Reactive Streams - RxJava, Akka, Spark)
+    - Circuit-Breaker Pattern over Retries (Netflix Hystrix)
+    - Retry with exponential backoff
+- Security
+  - Authentication
+    - TLS Client Certificates
+    - HTTPS Basic Authentication
+    - Asymmetric Request Signing 
+  - Authorisation
+- Data Coordination
+  - Apology-Oriented Programming
+  - Event-Driven Architecture
+  - Causal consistency (Riak, Red Bull’s Eventuate)
+  - Saga Pattern - Distributed transactions
+
+# Kubernetes
+- Master node (Container Services) - Control plane
+  - API Server (Entry point for UI, CLI)
+  - Controller Manager (monitors health of cluster)
+  - Scheduler (ensures Pod placement based on available resources)
+  - etcd (key value storage of cluster state and configuration)
+    - ConfigMap - external configuration to the applications
+    - Secret - configuration stored in base64 hash
+  - State for data plane service proxies
+    - configuration, telemetry, security (Istio)
+- Worker nodes (Container Host)
+  - Kublete (node agent)
+- Deployments (Pod Wrapper)
+  - Specify replicas
+- StatefulSet (Pod Wrapper)
+  - Specify shared volume for database type Pods
+- Pods (Container Wrapper)
+  - Multiple containers can exist in pod and communicate via localhost
+    - Init containers (run on pod start-up sequentially)
+    - Application containers (sidecar, main, run in parallel)
+      - controller <-> resource definition (for actual vs desired instances)
+      - custom controller e.g. detect config changes to restart pod and use new config
+  - Service attached to pod (all replicas)
+    - Allocated IP address with load balancer
+    - Internal service (for pod with db)
+      - Volume (local or external)
+    - External service (for pod with web app) <- ingress
+  - Readiness checks on start-up to decide when to accept traffic
+  - Liveness check to continually check health
+  - Workloads
+    - Replica sets (Stateless microservice)
+    - Stateful set (Singleton)
+    - Cron jobs
+  - Data plane (Service mesh) - Envoy
+    - Service mesh interface specification
+    - HTTP Caching, traffic routing
+    - Protocols for MongoDB, ZooKeeper, MySQL, Redis, Kafka
+    - WebAssembly support
+- Operators - Kubebuilder / Operator SDK
+  - More complex lifecycle implementations
+    - e.g. S3 backup of state before redeploy, trigger recoveries, queues, monitoring
+- Knative (serverless capabilities - scale-to-zero)
+  - Knative Serving (request-response)
+  - Knative Eventing (event-driven)
+    - Starting a broker with an importer (Apache Camel) to import external events
+    - Importers allow subscribing from containers using YAML declarations
+- Dapr (sidecar toolkit for service discovery, tracing, retries, pub/sub, cloud APIs, key-value stores)
+  - Explicit sidecar that can be called via HTTP or gRPC (instead of transparent sidecar like service mesh proxy)
+- Cloudstate (sidecar for state management)
+  - use gRPC withing container function to call sidecar to retrieve and interact with state
+  - underlying state is abstracted
+  - event sourcing, CQRS, key-value lookups, messaging
 
 # Javascript
 
