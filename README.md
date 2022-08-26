@@ -208,7 +208,59 @@
   - Causal consistency (Riak, Red Bull’s Eventuate)
   - Saga Pattern - Distributed transactions
 
+# Eventual Consistency
+
+- CRDT (Conflict-Free Replicated Data Type) (Information)
+  - ACID 2.0
+    - Associative - `(A*(B*C)) = (A*B)*C`
+    - Commutative - `(A*B = B*A)`
+    - Idempotent - `(A*A=A)`
+    - Distributed
+  - Types
+    - CmRDT (Commutative RDT) - operation based (sends A++)
+    - CvRDT (Convergent RDT) - state based (sends {A=1})
+    - Delta CRDT (Delta mutator) - delta based (sends state delta)
+      - Small message + idempotency (bulked, causal consistency)
+      - Monotonic (absence of rollback)
+- Gossip Protocol (Communication)
+  - Push - per cycle => if we know X, tell peers
+  - Pull - per cycle => ask peer about X
+  - Types
+    - Rumour (Viral) - propagates, push based
+    - Anti-entropy (Removing Inconsistencies)
+    - Aggregate (Averaging) - pull based
+- Consistency Types
+  - Causal consistency (ordering of updates for all nodes)
+  - Read-your-writes consistency (process A gets its updated value)
+  - Session consistency (read-your-writes consistency if a session exists)
+  - Monotonic read consistency (subsequent reads of a value won’t return older values)
+  - Monotonic write consistency (writes by same process must complete before another write)
+- Raft Consensus Algorithm
+  - Two phase commit
+    - Contact every participant, suggest a value and gather their responses
+    - If everyone agrees, contact every participant again to let them know. Otherwise, contact every participant to abort the consensus.
+  - etcd, consul, YugabyteDB, CockroachDB, TiDB, MongoDB (partially), InfluxDB (partially)
+  - Weave Mesh (uses Gossip protocol)
+
+# Event Streams
+
+- Data Streaming - Log commits
+- Publish-subscribe
+- Graph-structured data model (Quine)
+- Messaging Protocol
+  - At most once (Sender -> Receiver)
+  - At least once (Sender (ack) -> Receiver)
+  - Exactly once (Sender (ack) -> Receiver (ack))
+- Tools 
+  - Apache Kafka (pub/sub event logs)
+  - Apache Flink (stream & batch processing)
+  - Apache Storm (stream processing)
+  - Apache Spark (micro batch processing)
+  - Amazon Kinesis (pub/sub event logs)
+  - Azure Event Hub (pub/sub event logs)
+
 # Kubernetes
+
 - Master node (Container Services) - Control plane
   - API Server (Entry point for UI, CLI)
   - Controller Manager (monitors health of cluster)
