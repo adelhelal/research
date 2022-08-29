@@ -313,6 +313,60 @@
   - underlying state is abstracted
   - event sourcing, CQRS, key-value lookups, messaging
 
+# Solace PubSub+
+
+- publishers
+  - publish to a topic (event brokers use topics to route messages to their destination)
+  - topics are subjects that are part of the message header (i.e. animals/domestic/cats)
+- message broker
+  - message VPN (unique names per VPN)
+    - topic endpoints - topic subscriptions configured
+      - selectors/filters - messages are only persisted if they match both the topic subscription and the selector
+        - topic endpoints require the removal of messages to be read
+    - queues - topic subscriptions configured
+      - selectors/filters - queues persist every message even if they don’t match the selector
+      - exclusive (a message can only be consumed by one consumer - fault tolerance can be implemented with a standby application)
+      - non-exclusive (messages are load balanced - round robin distribution to connected applications)
+      - queue can be read from without removing messages
+    - clients - topic subscriptions configured
+- consumers
+  - direct messaging - reliable, but not guaranteed
+    - delivered to subscribing clients in the order in which publishers publish them
+    - don't require acknowledgment of receipt by subscribing clients
+    - aren't retained for a client when it's not connected to an event broker
+  - guaranteed messaging - ensure the delivery of a message between two applications
+    - event broker must have message spooling enabled
+    - if an ingress message cannot be received (e.g. spool quota is exceeded) the publisher is not acknowledged, and the appropriate event broker statistic is incremented
+  - eliding enabled
+    - consumers only receives the most recent message held in the event broker
+
+# Data Store Types
+
+| RDBMS | NoSQL | Data Warehouse |
+| - | - | - |
+| Vertically Scalable | Horizontally Scalable |  |
+| ACID Rule | CAP theorem | |
+| Row-Oriented storage | Unstructured Data | Column-Oriented storage |
+| Online Transactional Processing (OLTP) | | Online Analytical Processing (OLAP) |
+| Transactional updates | | Bulk inserts |
+| Structured Relational Data - normalised to reduce redundant data. Optimized to maximize efficiency of updating data (insert, update, delete) | Simple fast lookups for Hierarchical collection of records; map-reduce over many nodes etc | Store large quantities of historical data; enable fast, complex queries across data |
+
+# Postgres
+- Features
+  - Performance
+    - `EXPLAIN ANALYSE`
+  - Clustered Indexes
+    - `CLUSTER table USING idx_table;`
+  - Partition Tables
+    - `CREATE TABLE "table" (...) PARTITION BY RANGE (timestamp);`
+  - Materialized Views
+    - `CREATE MATERIALIZED VIEW mymatview AS SELECT * FROM mytab;`
+    - `REFRESH MATERIALIZED VIEW mymatview;`
+  - Vacuuming
+    - `VACUUM ANALYSE table;`
+
+![Data Mesh](resources/postgres.png)
+
 # Javascript
 
 ### Web Workers
