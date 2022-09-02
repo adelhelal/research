@@ -622,13 +622,13 @@
 - Unified ID 2.0 - the trade desk - demand-side platform (DSP)
   - Replacement to third-party cookies from Chrome
 
-## Encryption
+### Encryption
 
 - SHA1 -160-bit hash value. Rendered as a hex number, 40 digits long. Exploited by "collision".
 - MD5 - 128-bit hash value. One way hashing which gets truncated. Duplications can be found.
 - AES256 - symmetric-key algorithm, the same key is used for encrypting and decrypting data.
 
-## Single Sign-On (SSO)
+### Single Sign-On (SSO)
 
 1. Send UserId, Password via SSL
 1. Login endpoint uses OAuth (Facebook/Twitter/Custom
@@ -649,7 +649,7 @@
 - Layer 2 - Data Link (Ethernet, Fiber)
 - Layer 1 - Physical (ISDN, T1)
 
-## Proxy
+### Proxy
 
 - Routing
 - Load balancing
@@ -663,7 +663,7 @@
 * Reverse Proxy (Server side static delivery e.g. CDN, SSL certification for underlying servers)
   * sits behind firewall and directs client requests to appropriate backend server
 
-### Proxy Evolution
+#### Proxy Evolution
 
 - Configuration-file era
 - Configuration DSL (Domain-specific language) era e.g. Haprxoy’s ACL, Varnish’s VCL
@@ -679,7 +679,7 @@
 - SNMP - Simple Network Management Protocol - printers, devices, network agents
 - Named Pipes - FIFO - inter-process communication (IPC) without network stack overhead
 
-## HTTP
+### HTTP
 
 - Status codes
   - 100 - Informational
