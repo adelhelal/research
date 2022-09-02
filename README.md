@@ -541,12 +541,12 @@
 ## Steps
 
 1. Import data
-2. Clean data (duplicates, irrelevant, incomplete)
-3. Split data (training / testing)
-4. Create model (create algorithm to analyze data)
-5. Train model
-6. Make prediction
-7. Evaluate and improve
+1. Clean data (duplicates, irrelevant, incomplete)
+1. Split data (training / testing)
+1. Create model (create algorithm to analyze data)
+1. Train model
+1. Make prediction
+1. Evaluate and improve
 
 ## Services
 
@@ -555,7 +555,9 @@
 - Apache Spark (MLlib)
 
 # Data Serialization
+
 ## Binary Formats
+
 - Protobuf - Google
   - Compiler to strong types
     ```bash
@@ -566,6 +568,168 @@
 - Avro - compact binary data serialization format similar to Thrift or Protocol Buffers
   - with additional features needed for distributed processing environments such as Hadoop
 - Captain Proto
+
+# CI/CD
+
+- Continuous Integration - commit -> build -> test
+- Continuous Delivery - commit -> build -> test -> push to staging -> approve before push to prod
+- Continuous Deployment - commit -> build -> test -> push to staging -> push to prod
+- Strategies in CI
+  - Traditional - Deploy new version on top of old version in one go
+  - A/B Testing - Deploy to specific nodes one at a time using feature flags
+  - Rolling Deployment - Deploy incrementally one by one (or rolling window)
+  - Canary Deployment - Deploy to % of nodes, monitor, then deploy to the rest
+  - Blue-Green Deployment - Deploy to a replica staging environment, switch from stage to live
+- Tools
+  - Teamcity
+  - Jenkins
+  - GitHub Actions
+    - GitHub Events - Issue created, PR created, PR merged, Contributor joined
+    - Trigger an Action - label, sort, assign to contributor, unit test
+    - Workflow - chain of Actions
+    - Organisational Tasks
+  - Octopus Deploy (.NET)
+  - Spinnaker (Netflix)
+  - Go (Thoughtworks)
+
+# Security
+
+- Objective > Overview > Decompose > Identity Threats > Identify Vulnerabilities
+- Priority of vulnerabilities - likely vs unlikely - high risk vs low risk
+- Encryption in transit / Encryption at rest / Authorization
+- Http Authorization (401 Unauthorized / 403 Forbidden)
+- Http Authentication
+  - Basic (Username:Password base64)
+  - Digest (uses MD4)
+  - Tokens (OAuth / OAuth2 / OpenId Connect)
+    - Request token (Client > Server)
+    - Response token & token secret (Server > Client)
+    - Login (Client > Server)
+    - Redirect (Server > Client)
+    - Request access token (Client > Server)
+    - Response access token (Server > Client)
+  - U2F (Universal 2-Factor Authentication) - physical device key
+    - Login (Client > Server)
+    - Verify login, response challenge (Server > Client > Device)
+    - Display challenge (Device > Client > Server)
+- RSA public-key cryptography (asymmetric encryption i.e. public/private keys)
+  - Alice uses **Bob’s public key** to encrypt Alice’s plain text message
+  - Bob uses **Bob’s private key** to decrypt Alice’s cypher text message
+  - SSH key generation
+    - `ssh-keygen -t ed25519 -C "adel.helal@email.address.com"`
+    - SSH Key created in `/Users/ahelal/.ssh/id_ed25519.pub`
+    - Copy contents into SSH key settings for e.g. GitHub
+- Unified ID 2.0 - the trade desk - demand-side platform (DSP)
+  - Replacement to third-party cookies from Chrome
+
+## Encryption
+
+- SHA1 -160-bit hash value. Rendered as a hex number, 40 digits long. Exploited by "collision".
+- MD5 - 128-bit hash value. One way hashing which gets truncated. Duplications can be found.
+- AES256 - symmetric-key algorithm, the same key is used for encrypting and decrypting data.
+
+## Single Sign-On (SSO)
+
+1. Send UserId, Password via SSL
+1. Login endpoint uses OAuth (Facebook/Twitter/Custom
+    - Custom passwords are encrypted with salted hash (SHA1)
+1. Verification returns Session Token to client
+    - Stored in memory or in Redis (non-persistent - timeout)
+1. Register endpoint receives PII and retrieves Data key from AWS KMS
+    - Encrypts PII using key and throws away plain text PII
+    - Stored in Profile Table
+
+# Network Layers - OSI (Open Systems Interconnection) Model
+
+- Layer 7 - Application (HTTP, FTP, SMTP)
+- Layer 6 - Presentation (XIDR, converting/translating formats)
+- Layer 5 - Session (SSH, RPC)
+- Layer 4 - Transport (TCP, UDP, SCTP)
+- Layer 3 - Network (IP, ICMP, IGMP)
+- Layer 2 - Data Link (Ethernet, Fiber)
+- Layer 1 - Physical (ISDN, T1)
+
+## Proxy
+
+- Routing
+- Load balancing
+- Failover
+- Access control
+- Identity management
+- Metrics collection
+- Information security
+
+* Forward Proxy (Client-side routing of internet traffic e.g. Fiddler)
+* Reverse Proxy (Server side static delivery e.g. CDN, SSL certification for underlying servers)
+  * sits behind firewall and directs client requests to appropriate backend server
+
+### Proxy Evolution
+
+- Configuration-file era
+- Configuration DSL (Domain-specific language) era e.g. Haprxoy’s ACL, Varnish’s VCL
+- Scripting language era e.g. OpenResty (Nginx + Lua), Nginx Plus (Nginx + NJS)
+- Cluster era e.g. REST API (Nginx + Ansible)
+- Cloud era e.g. Sidecar Proxy pattern (istio + envoy, Linkerd + Linkerd proxy)
+
+# Protocols
+
+- HTTP - request/response from client to server
+- TCP - Transmission Control Protocol - passes packets from client, reorders on server
+- UDP - User Datagram Protocol - no hand-shaking, no error-checking, time-sensitive
+- SNMP - Simple Network Management Protocol - printers, devices, network agents
+- Named Pipes - FIFO - inter-process communication (IPC) without network stack overhead
+
+## HTTP
+
+- Status codes
+  - 100 - Informational
+  - 200 - Successful
+  - 300 - Redirection
+  - 400 - Client errors
+  - 500 - Server errors
+- Latency
+  - Head-of-line blocking (pipeline requests come back FIFO from same domain/TCP connection)
+  - Redundant info in HTTP headers
+  - Workarounds: minified js/css, image sprites, inline content
+  - HTTP/2
+    - Single TCP connection (single initialisation handshaking)
+      - Different subdomains that use same IP will reuse active TCP connection
+    - Multiple Streams (multiple request/response streams simultaneously)
+    - Binary Framing (TCP packets will be sent in binary, not plaintext) - interleaved
+    - Flow Control (change frame size, window size, traffic during client/server connection)
+    - Header compression (HPACK) - client & server hold header tables (id|name|value)
+    - TLS (H2 end-to-end encryption - used by most browser vendors / H2C clear text)
+  - HTTP/3
+
+# CIDR
+
+Classless Inter-Domain Routing - “OR” masking
+
+![CIDR](resources/cidr.png)
+
+# Functional Programming
+
+- Functions as “first class citizens” - store functions in variables
+- Higher order functions - pass in functions as arguments or return functions
+- Pure functions - Given the same input, always return the same output
+- Pure objects - objects without functions in its prototype
+- Currying - function takes first argument, returns another function which uses second argument…
+- Functor - objects that have .map feature
+- Monads - a Functor that implements Applicative and Chain specifications
+
+# Actor Model (Akka)
+
+Toolkit for building highly concurrent, distributed, and resilient message-driven applications
+
+- Distribution Challenges
+  - Statefulness
+  - Concurrency
+  - Topology & Discovery
+  - Recovery
+  - Bottlenecks
+  - Consistency
+  - Availability
+- Theory (Stateful, Protocol Driven Design, CAP Theorem)
 
 # Javascript
 
