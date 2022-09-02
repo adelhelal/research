@@ -538,7 +538,7 @@
 - Reinforcement learning e.g. Artificial Intelligence
   - Maximize a numerical reward goal
 
-## Steps
+### Steps
 
 1. Import data
 1. Clean data (duplicates, irrelevant, incomplete)
@@ -548,7 +548,7 @@
 1. Make prediction
 1. Evaluate and improve
 
-## Services
+### Services
 
 - Microsoft Azure Machine Learning - Cortana Analytics Suite
 - Google Prediction API - TensorFlow
@@ -556,7 +556,7 @@
 
 # Data Serialization
 
-## Binary Formats
+### Binary Formats
 
 - Protobuf - Google
   - Compiler to strong types
