@@ -352,6 +352,7 @@
 | Structured Relational Data - normalised to reduce redundant data. Optimized to maximize efficiency of updating data (insert, update, delete) | Simple fast lookups for Hierarchical collection of records; map-reduce over many nodes etc | Store large quantities of historical data; enable fast, complex queries across data |
 
 # Postgres
+
 - Features
   - Performance
     - `EXPLAIN ANALYSE`
@@ -365,7 +366,206 @@
   - Vacuuming
     - `VACUUM ANALYSE table;`
 
-![Data Mesh](resources/postgres.png)
+![Postgres](resources/postgres.png)
+
+# SQL Server
+
+- ACID Rule (Transactions)
+  - Atomic - independent of previous and subsequent transactions
+  - Consistent - no unfinished updates on commit/rollback (referential integrity)
+  - Isolated - no intermediate statements visible to other transactions
+  - Durable - on commit, data is persisted regardless of crashing (backups)
+- DDL - Data Definition Language (CREATE TABLE, CREATE PROC)
+- DML - Data Manipulation Language (INSERT, UPDATE, DROP, SELECT)
+- Principals (Logins/Users) & Securables (Tables/Views/Stored Procedures) & Permissions (Roles)
+  - Login - Server level principal used with password
+  - User - Database level principal used with login
+  - Schemas - Database namespace for grouping objects together (user ownerships)
+  - Roles - used to grant groups of permissions to tables/views rather than direct granting from users to tables/views
+- Isolation Levels (Transactions)
+  - Read Committed - Transaction only reads committed data (default)
+  - Read Uncommitted - Transaction can read uncommitted data ("dirty read")
+  - Repeatable Read - only reads committed data & inconsistencies from multiple lookups of the same data is not allowed
+  - Snapshot - only reads state of data from beginning of transaction (BEGIN TRANS)
+  - Serializable - locks all SQL statements within transaction for update & inserts
+- Lock hints (SQL SELECT Statements)
+
+| Lock hint | Behaviour |
+| - | - |
+| NOLOCK |  |
+| ROWLOCK | _shared lock - compatible with shared and update locks_ |
+| PAGELOCK (default) | _shared lock - compatible with shared and update locks_ |
+| TABLOCK | _shared lock - compatible with shared and update locks_ |
+| UPDLOCK | _update lock - only compatible with shared locks (promoted to exclusive when shared locks are released)_ |
+| HOLDLOCK | _exclusive lock - not compatible with any types of locks_ |
+| READPAST | _ignore locks_ |
+
+- Clustered index key vs. non-clustered index key
+  - Clustered - physically reorders stored records (unique index) (b-tree)
+  - Non-clustered - logical order of the indexes (holds index rows not data rows)
+
+![Database Clusters](resources/database.clusters.png)
+
+- Performance tuning
+  - SQL Profiler to find stored procedures with long durations
+  - Maintenance Plans to refresh statistics for Query Optimizer to make correct Estimated Plan
+  - Execution Plans to change table scans to index seeks
+- Page - 8kb [Page Number | Page Type | Free Space | Allocation Unit ID]
+  - Page Types (Data, Index, Text/Image, Allocation Maps, Free Space)
+- Schemas
+  - `ALTER AUTHORIZATION ON SCHEMA::HR_Acc to Adel`
+- Indexed Views
+  - `CREATE VIEW V1 WITH SCHEMABINDING AS`
+- Column Store Index
+  - `CREATE CLUSTERED COLUMNSTORE INDEX index_name ON table`
+- Connection String
+  - `"Data Source=mySqlServer;InitialCatalog=myDatabase"`
+
+# NoSQL (Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS)
+
+- Document (MongoDB, CouchDB, RavenDB, MarkLogic)
+- Key-value (DynamoDB, Table Storage, Redis, Riak, MemcacheDB, PalDB, Project Voldemort)
+- Column (HBase, Accumulo, Cassandra)
+- Graph (Neo4J, OrientDB, Allegro, Virtuoso)
+- Real-time (RethinkDB, Firebase)
+
+# NewSQL
+
+- RDBMS providing scalability of NoSQL for transaction processing workloads & maintains ACID
+- AWS Aurora, Yugabyte, CockroachDB, Google Spanner, MemSQL, Clustrix, VoltDB, NuoDB
+- SQL Engines (MySQL Cluster, Infobright, TokuDB)
+- Transparent Sharing (ScaleBase)
+- In Memory Databases (Hekaton SQL Server 20214, Apache Geode)
+  - MicroStream (persistence engine for storing Java objects and documents)
+
+# Big Data
+
+- Definition
+  - Volume (Petabytes of data stored)
+  - Velocity (Terabytes of data collected i.e. IoT)
+  - Variety (Semi-structured data)
+  - Complexity (From many sources)
+- ETL (Extract, transform, load)
+  - Matillion (load into Redshift/Snowflake)
+  - AWS Glue
+  - AWS Data Pipeline (obsolete)
+  - SSIS (SQL Server Integration Services)
+- AWS
+  - QuickSight - cloud-scale business intelligence (BI) service
+  - Glacier - used for backup storage. Elastic MapReduce Service
+  - Redshift - Petabyte for data storage.
+- Azure Data Lake - analytics in the cloud (uses U-SQL)
+- In-Memory computing (MSSQL ColumnStore (CS), StarCounter, memSQL, InnoDB)
+- BI Tools
+  - SSAS (MSSQL Analytics Service)
+    - Dimensions (Groups)
+    - Measures (values to sum, count average, max, min etc)
+    - Filters
+    - Facts (all possible raw values)
+  - Looker
+  - Apache Druid
+    - Open-source analytics data store designed for BI (OLAP) queries on event data
+    - Provides low latency real-time data ingestion, flexible data exploration & fast data aggregation
+  - Apache Pinot
+    - index Kafka streams and support low-latency queries
+- Apache Hadoop & Storm (uses Hive query language on databases like HBase and Cassandra)
+  - Presto - SQL Query Engine on Hadoop
+    - Query parser > planner > scheduler > worker (grabs from underlying data store)
+- Apache Spark
+  - Driver (one) -> Executors (many)
+  - RDD (Resilient Distributed Dataset) - needs to be serializable
+    - Transformations (lazy - separate executor tasks) - map(), union(), join(), filter(), distinct()
+    - Actions (returns execution to driver) - reduce(), collect(), count(), take(), foreach()
+    - persist() or cache() stores RDDs from transformations into memory
+    - repartition() expensive reshuffling to evenly distribute RDDs across executors
+    - broadcast variables and accumulators
+      - variables aren’t passed across machine e.g.
+        ```java
+        // bad
+        val counter = 0
+        rdd.foreach(x => counter += x)
+        ```
+        ```java
+        // good
+        val counter = sc.longAccumulator("My Accumulator")
+        rdd.foreach(x => counter.add(x))
+        ```
+  - Structured Streaming (Lambda Architecture / Micro-Batch processing)
+    - Unbounded input table running incremental queries
+- Kafka Streams
+  - Java API running in app (no separate processing cluster)
+  - Supports per-record stream processing
+  - Windowing operations, stateless transformations (filter, map), stateful (joins, aggregations)
+- Change Data Capture (CDC)
+  - Database log scanner - Debezium - consumes data from transaction log
+- Data Storage Techniques
+  - Bitmapping
+  - HyperLogLog (HLL) - (with Postgres)
+    - constants - log2m , regWidth
+    - library for jvm `"net.agkn" % "hll" % "1.6.0"`
+    - import: `import net.agkn.hll.HLL;`
+    - add new
+      ```java
+      HLL hll = new HLL(config.log2m, config.regWidth)
+      hll.addRaw(
+        Hashing.murmur3_128().newHasher().putBytes(newValue).hash().asLong()
+      )
+      byte[] value = hll.toBytes
+      ```
+    - append to existing
+      ```java
+      HLL hll = HLL.fromBytes(value.getBytes(1))
+      hll.addRaw(
+        Hashing.murmur3_128().newHasher().putBytes(newValue).hash().asLong()
+      )
+      byte[] value = hll.toBytes
+      ```
+    - reading distinct value:
+      ```java
+      HLL hll = HLL.fromBytes(value);
+      var distinct = hll.cardinality();
+      ```
+
+# Machine Learning
+
+- Causal <-> Correlation
+- Supervised learning e.g. Fraud detection, recommendation engine, spam filtering
+  - Labeling datasets (Regression and Naive Bayes Classification, Alternating Least Squares)
+- Unsupervised learning e.g. Social networks, language prediction
+  - Unlabelled datasets (AFK-MC², k-means and Principle Component Analysis algorithm)
+- Semi-supervised Learning e.g. Image categorization, Voice recognition
+  - Labeled and Unlabelled datasets (Regression and Classification - Support vector machines, Decision Trees [Gradient-Boosted Trees and Random Forests])
+- Reinforcement learning e.g. Artificial Intelligence
+  - Maximize a numerical reward goal
+
+## Steps
+
+1. Import data
+2. Clean data (duplicates, irrelevant, incomplete)
+3. Split data (training / testing)
+4. Create model (create algorithm to analyze data)
+5. Train model
+6. Make prediction
+7. Evaluate and improve
+
+## Services
+
+- Microsoft Azure Machine Learning - Cortana Analytics Suite
+- Google Prediction API - TensorFlow
+- Apache Spark (MLlib)
+
+# Data Serialization
+## Binary Formats
+- Protobuf - Google
+  - Compiler to strong types
+    ```bash
+    protoc -I=$src --csharp_out=$dst $src/foo.proto
+    ```
+- Parquet
+- Thrift
+- Avro - compact binary data serialization format similar to Thrift or Protocol Buffers
+  - with additional features needed for distributed processing environments such as Hadoop
+- Captain Proto
 
 # Javascript
 
@@ -469,17 +669,6 @@ CREATE EXTERNAL TABLE IF NOT EXISTS orders (
 ) PARTITIONED BY (batch_id BIGINT, process_time BIGINT)
 STORED AS PARQUET LOCATION 's3a://s3_bucket/s3_file_path';
 ```
-
-# Machine Learning
-
-### Steps
-1. Import data
-2. Clean data (duplicates, irrelevant, incomplete)
-3. Split data (training / testing)
-4. Create model (create algorithm to analyze data)
-5. Train model
-6. Make prediction
-7. Evaluate and improve
 
 # Quantum Programming
 
