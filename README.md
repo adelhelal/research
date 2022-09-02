@@ -639,7 +639,9 @@
     - Encrypts PII using key and throws away plain text PII
     - Stored in Profile Table
 
-# Network Layers - OSI (Open Systems Interconnection) Model
+# Network
+
+### Layers - OSI (Open Systems Interconnection) Model
 
 - Layer 7 - Application (HTTP, FTP, SMTP)
 - Layer 6 - Presentation (XIDR, converting/translating formats)
