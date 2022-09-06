@@ -421,7 +421,8 @@
 - Connection String
   - `"Data Source=mySqlServer;InitialCatalog=myDatabase"`
 
-# NoSQL (Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS)
+# NoSQL
+Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS
 
 - Document (MongoDB, CouchDB, RavenDB, MarkLogic)
 - Key-value (DynamoDB, Table Storage, Redis, Riak, MemcacheDB, PalDB, Project Voldemort)
