@@ -703,6 +703,8 @@ Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS
     - Header compression (HPACK) - client & server hold header tables (id|name|value)
     - TLS (H2 end-to-end encryption - used by most browser vendors / H2C clear text)
   - HTTP/3
+    - Uses QUIC, a UDP datagram protocol-based, stream-multiplexed, and secure transport protocol
+    - Integrates with TLS 
 
 # CIDR
 
