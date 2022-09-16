@@ -593,6 +593,12 @@ Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS
   - Spinnaker (Netflix)
   - Go (Thoughtworks)
 
+# Infrastructure as Code
+
+  - Terraform (Hashicorp)
+  - CloudFormation (AWS)
+  - Bicep (Azure)
+
 # Security
 
 - Objective > Overview > Decompose > Identity Threats > Identify Vulnerabilities
