@@ -582,6 +582,7 @@ Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS
   - Canary Deployment - Deploy to % of nodes, monitor, then deploy to the rest
   - Blue-Green Deployment - Deploy to a replica staging environment, switch from stage to live
 - Tools
+  - buildkite (yaml configuration)
   - Teamcity
   - Jenkins
   - GitHub Actions
