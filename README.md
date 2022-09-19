@@ -422,6 +422,7 @@
   - `"Data Source=mySqlServer;InitialCatalog=myDatabase"`
 
 # NoSQL
+
 Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS
 
 - Document (MongoDB, CouchDB, RavenDB, MarkLogic)
@@ -457,6 +458,8 @@ Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS
   - Redshift - Petabyte for data storage.
 - Azure Data Lake - analytics in the cloud (uses U-SQL)
 - In-Memory computing (MSSQL ColumnStore (CS), StarCounter, memSQL, InnoDB)
+- MySQL HeatWave
+  - Real Time, Machine Learning, OLTP, OLAP workloads running directly from their MySQL Database
 - BI Tools
   - SSAS (MSSQL Analytics Service)
     - Dimensions (Groups)
