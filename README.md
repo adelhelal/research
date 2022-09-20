@@ -106,6 +106,28 @@
 * Static type checking (compile time)
 * Dynamic type checking (runtime)
 
+# Data Structures and Algorithms
+
+- Data structures (Array, LinkLists, HashMaps, LIFO/FIFO Stack, Queue)
+- Algorithms (Linear Search, Binary Search, Interpolation Search)
+- Sorting (Selection sort, Bubble sort, Quick sort, Heap sort, Merge sort)
+- Graph Theory (Binary Tree, dijkstra algorithm, astar algorithm)
+- Dynamic Programming (fibonacci)
+
+- Measuring code complexity “basic computer steps”  in terms of Time and Space
+- Types of measurements of Running Time
+  - worst-case - Big O-Notation (maximum of the running times for all inputs of the given size)
+  - best-case - Omega (minimum of the running times for all inputs of the given size)
+  - average-case - Theta (uniform distribution over the inputs of a given size)
+- O-Notation Complexity
+  - O(1) - constant e.g. Array
+  - O(log n) - logarithmic - e.g. binary search e.g. yes/no branching or 50% guessing
+  - O(n) - linear - e.g. loop - 5n + 4 e.g. Stack, Queue 
+  - O(n log n) - e.g. binary search within loop e.g. Heap sort, Merge sort
+  - O(n2) - quadratic - e.g. loop within loop e.g. loop within recursive function e.g. Bubble sort
+  - O(2n) - exponential - e.g. recursive function calling itself twice 
+  - O(n!) - n factorial - e.g. while not sorted, shuffle collection e.g. permutation sort
+
 # Architecture
 
 - CQRS (Command Query Responsibility Segregation)
@@ -729,6 +751,17 @@ Classless Inter-Domain Routing - “OR” masking
 
 ![CIDR](resources/cidr.png)
 
+# Cache
+
+- Algorithms
+  - LRU - Least Recently Used
+  - MRU - Most Recently Used
+- Multithreaded `ConcurrentDictionary<TKey, TValue>()`
+- Reverse Proxy - Edge (CDN)
+  - Varnish
+  - Akamai (CDN - Content Delivery Network)
+  - AWS CloudFront (CDN - Content Delivery Network) Caching
+
 # API Platforms
 
 - Apache ShenYu - pluggable architecture using registration centre
@@ -768,6 +801,14 @@ Toolkit for building highly concurrent, distributed, and resilient message-drive
   - Consistency
   - Availability
 - Theory (Stateful, Protocol Driven Design, CAP Theorem)
+
+# Mobile Development
+
+- Unity (Gaming apps)
+- Xamarin (Native applications)
+- Apache Cordova (Web Based Mobile apps)
+- Swift (iOS mobile development)
+- Jetpack Compose (Google Android libraries)
 
 # Javascript
 
