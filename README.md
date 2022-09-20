@@ -459,7 +459,8 @@ Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS
 - Azure Data Lake - analytics in the cloud (uses U-SQL)
 - In-Memory computing (MSSQL ColumnStore (CS), StarCounter, memSQL, InnoDB)
 - MySQL HeatWave
-  - Real Time, Machine Learning, OLTP, OLAP workloads running directly from their MySQL Database
+  - Massively parallel, high performance, in-memory query accelerator
+  - Real Time, Machine Learning, OLTP, OLAP workloads running directly from MySQL Database without ETL
 - BI Tools
   - SSAS (MSSQL Analytics Service)
     - Dimensions (Groups)
