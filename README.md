@@ -722,6 +722,19 @@ Classless Inter-Domain Routing - “OR” masking
 
 ![CIDR](resources/cidr.png)
 
+# API Platforms
+
+- Apache ShenYu - supports rate limiter/circuit breaker/Oauth2.0/JSON WebToken
+- Swagger - modelling language with powerful representation of your RESTful API
+- RAML - API modeling language that ThoughtWorks considers more lightweight than Swagger
+- Twilio replaces all the telecom hardware with an API for phone, VoIP, and messaging. 
+- Stripe and Braintree for payment processing
+- Lob for printing
+- Spout for finance
+- Rets.ly for real estate
+- Clever for education
+
+      
 # Functional Programming
 
 - Functions as “first class citizens” - store functions in variables
