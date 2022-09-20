@@ -94,11 +94,17 @@
 
 # Programming Paradigms
 
-- Imperative Programming (OOP)
-- Strongly-typed - "1" + 2 will result in a type error
-- Weakly-typed = "1" + 2 = "12" - "type-coercion" (implicit conversion of data types)
-- Static type checking (compile time)
-- Dynamic type checking (runtime)
+- Imperative - OOP - (C#, Java, C++) - Classes are the atomic level
+- Functional (F#, Haskell, JavaScript)
+- Procedural (C)
+- Data-Oriented Programming Language (Ballerina)
+- Actor Model (Erlang, Scala, Akka.NET) - Concurrency/Distribution of message passing
+- Reactive Programming - A paradigm where "async data streams" can be used almost everywhere
+
+* Strongly typed - "1" + 2 will result in a type error
+* Weakly typed - "1" + 2 = "12" - "type-coercion" (implicit conversion of data types)
+* Static type checking (compile time)
+* Dynamic type checking (runtime)
 
 # Architecture
 
