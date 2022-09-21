@@ -602,6 +602,13 @@ Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS
   - with additional features needed for distributed processing environments such as Hadoop
 - Captain Proto
 
+# State Machines / Workflows
+
+- Apache Airflow (Python DAGs)
+- Apache DolphinScheduler (visual DAG interface)
+- Kestra (JVM) - build, run, schedule, and monitor complex pipelines
+- AWS Step Functions
+
 # CI/CD
 
 - Continuous Integration - commit -> build -> test
