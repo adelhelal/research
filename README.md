@@ -529,6 +529,7 @@ Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS
   - Java API running in app (no separate processing cluster)
   - Supports per-record stream processing
   - Windowing operations, stateless transformations (filter, map), stateful (joins, aggregations)
+  - `KStream<K,V>` allows for messages consumed from multiple topics to be used as a stream of records
 - Change Data Capture (CDC)
   - Database log scanner - Debezium - consumes data from transaction log
 - Data Storage Techniques
