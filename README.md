@@ -462,7 +462,7 @@ Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS
 # NewSQL
 
 - RDBMS providing scalability of NoSQL for transaction processing workloads & maintains ACID
-- AWS Aurora, Yugabyte, CockroachDB, Google Spanner, MemSQL, Clustrix, VoltDB, NuoDB
+- AWS Aurora, Azure Cosmos DB, Yugabyte, CockroachDB, Google Spanner, MemSQL, Clustrix, VoltDB, NuoDB
 - SQL Engines (MySQL Cluster, Infobright, TokuDB)
 - Transparent Sharing (ScaleBase)
 - In Memory Databases (Hekaton SQL Server 20214, Apache Geode)
