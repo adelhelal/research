@@ -923,5 +923,14 @@ STORED AS PARQUET LOCATION 's3a://s3_bucket/s3_file_path';
 
 # Quantum Programming
 
-* Q# (.NET quantum programming framework)
-* Cirq (Google open source quantum programming framework)
+- Q# (.NET quantum programming framework)
+- Cirq (Google open source quantum programming framework)
+
+# Chaos engineering
+
+- Chaos Monkey (Netflix)
+  - Chaos Gorilla simulates the failure of an entire availability zone in AWS
+  - Chaos Kong simulates the failure of an entire AWS region
+- Gremlin - chaos-engineering-as-a-service
+- LinkedOut (LinkedIn)
+- Filibuster - test microservice applications for resilience
