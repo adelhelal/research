@@ -456,7 +456,7 @@ Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS
 - Document (MongoDB, CouchDB, RavenDB, MarkLogic)
 - Key-value (DynamoDB, Table Storage, Redis, Riak, MemcacheDB, PalDB, Project Voldemort)
 - Column (HBase, Accumulo, Cassandra)
-- Graph (Neo4J, OrientDB, Allegro, Virtuoso)
+- Graph (Amazon Neptune, Neo4J, OrientDB, Allegro, Virtuoso)
 - Real-time (RethinkDB, Firebase)
 
 # NewSQL
