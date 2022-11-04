@@ -820,6 +820,12 @@ Toolkit for building highly concurrent, distributed, and resilient message-drive
 
 # Javascript
 
+### Frameworks
+
+- React
+- Angular
+- Qwik - Resumability - focuses on optimizing Javascript with lazy loading, prefetching on background threads
+
 ### Web Workers
 
 ```javascript
