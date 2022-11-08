@@ -654,6 +654,11 @@ Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS
     - distributed load generation
   - Load tests - capacity at large scale usage
 
+### Code Coverage / Analysis
+
+- NDepends - Static Analysis Tool
+- dotCover - tool that measures code coverage
+
 # Infrastructure as Code
 
   - Terraform (Hashicorp)
@@ -790,7 +795,13 @@ Classless Inter-Domain Routing - “OR” masking
   - Akamai (CDN - Content Delivery Network)
   - AWS CloudFront (CDN - Content Delivery Network) Caching
 
-### Observability
+### Cookies
+
+`Set-Cookie: <name>=<value>[; <Max-Age>=<age>][; expires=<date>][; domain=<domain_name>][; path=<some_path>][; secure][; HttpOnly]`
+
+- where `HttpOnly` means a browser script cannot access the cookie value
+
+# Observability
 
 - Three Pillars of Observability
   - Logging
@@ -893,6 +904,62 @@ Toolkit for building highly concurrent, distributed, and resilient message-drive
 - GPU
   - CPUs are optimised for low latency applications
   - GPUs are optimised for high throughput
+
+# Threading
+
+- Mutex - cross processor locking i.e. check to see if application is already running
+
+# Concurrency
+
+- Happens-before - determined by vector clocks - X before Y if:
+  - Same goroutine
+  - Are a synchronization pair (lock/unlock or send/receive on same channel)
+  - X before Event before Y (transitive)
+
+# REPL Driven Development (read-eval-print loop)	
+
+- Interactive Programming - takes single user input expressions and evaluates
+
+# Reporting - Charts
+
+- D3
+- Flot
+- HighCharts
+- XPlot (F#)
+- Dundas
+
+# Agile Project Management
+
+- Jira
+- Trello
+- Visual Studios Online - TFS
+- ZenHub.io - Git
+- Maven - Apache
+
+# IDE
+
+- Visual Studios.Net 
+- Visual Studios Code (Open Source)
+- Rider for .NET by JetBrains
+- IntelliJ for Java by Jetbrains
+- Webstorm for Node.js by Jetbrains
+- CLion for C++, Python and Swift by Jetbrains
+- Sublime
+- Atom by GitHub
+- JRebel for Android by ZeroTurnaround
+
+# Operating System
+
+eBPF runs sandboxed programs in an operating system kernel. It is used to safely and efficiently extend the capabilities of the kernel without requiring to change kernel source code or load kernel modules
+
+# CRON
+
+[seconds] [minutes] [hours] [day] [month] [weekday] [year]
+* * * * * * *
+
+# Text Parsers
+
+ANTLR (ANother Tool for Language Recognition)
 
 # .NET
 
@@ -1090,3 +1157,15 @@ STORED AS PARQUET LOCATION 's3a://s3_bucket/s3_file_path';
   - Container OS Image - The Operating System environment installed on docker image
   - Container Repository - repository listing all docker containers stored on host
   - Container Management Technology - manage containers from PowerShell or Docker
+
+# Bloggers
+
+- Eric Evans - Author of DDD
+- Martin Fowler - Author, ThoughtWorks
+- Dan Wahlin - Javascript/EC6, Node.js, Angular.js, HTML5, CSS3
+- Scott Hanselman - .Net 
+- ScottGu - ASP.NET, Microsoft Cloud
+- Damian Edwards - ASP.NET architect
+- Eric Lippert - C#. compiler, language design and MSIL
+- Udi Dahan - Enterprise Architecture, SOA
+- John Montgomery - Director of Program Management for Visual Studio
