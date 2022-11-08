@@ -950,16 +950,17 @@ Toolkit for building highly concurrent, distributed, and resilient message-drive
 
 # Operating System
 
-eBPF runs sandboxed programs in an operating system kernel. It is used to safely and efficiently extend the capabilities of the kernel without requiring to change kernel source code or load kernel modules
+- eBPF - runs sandboxed programs in an operating system kernel
+  - It is used to safely and efficiently extend the capabilities of the kernel without requiring to change kernel source code or load kernel modules
 
 # CRON
 
-[seconds] [minutes] [hours] [day] [month] [weekday] [year]
-* * * * * * *
+`[seconds] [minutes] [hours] [day] [month] [weekday] [year]`
+`* * * * * * *`
 
 # Text Parsers
 
-ANTLR (ANother Tool for Language Recognition)
+- ANTLR (ANother Tool for Language Recognition)
 
 # .NET
 
