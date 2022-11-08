@@ -45,7 +45,7 @@
   * Service Locator (HttpContext.ApplicationServices.GetService(typeof(ISomeService)))
 
 - Map/Reduce (NoSQL Data retrieval)
-  - Map uses Views to build Queries, allowing for distributed query processing 
+  - Map uses Views to build Queries, allowing for distributed query processing
   - Reduce takes result of Map query, and aggregates data as results
 
 * Saga Pattern
@@ -122,10 +122,10 @@
 - O-Notation Complexity
   - O(1) - constant e.g. Array
   - O(log n) - logarithmic - e.g. binary search e.g. yes/no branching or 50% guessing
-  - O(n) - linear - e.g. loop - 5n + 4 e.g. Stack, Queue 
+  - O(n) - linear - e.g. loop - 5n + 4 e.g. Stack, Queue
   - O(n log n) - e.g. binary search within loop e.g. Heap sort, Merge sort
   - O(n2) - quadratic - e.g. loop within loop e.g. loop within recursive function e.g. Bubble sort
-  - O(2n) - exponential - e.g. recursive function calling itself twice 
+  - O(2n) - exponential - e.g. recursive function calling itself twice
   - O(n!) - n factorial - e.g. while not sorted, shuffle collection e.g. permutation sort
 
 # Architecture
@@ -153,7 +153,7 @@
   * Networking - Service discovery, Load balancing, Retry, Timeout, Circuit-breakers, Rate limiting, Observability
     * Service mesh (Istio), Consul, Envoy, Dapr, Azure Service Fabric
     * Rate limiting
-      * Concurrency limit - resources limited at any given time 
+      * Concurrency limit - resources limited at any given time
       * Token bucket limit - availability of resources after a given interval
       * Fixed window limit - number of resources for a given time before time reset
       * Sliding window limit - number of resources for a given time from now
@@ -198,7 +198,7 @@
 - Value chain-aligned
   - Organizations in supply-chain management, product development, or transportation industries
 - Coarse grained aligned
-  - Large-scale organizations 
+  - Large-scale organizations
   - Complex architectures with many applications require multiple governance levels
 - Coarse grained and governed
   - Large-scale organizations
@@ -228,7 +228,7 @@
   - Authentication
     - TLS Client Certificates
     - HTTPS Basic Authentication
-    - Asymmetric Request Signing 
+    - Asymmetric Request Signing
   - Authorisation
 - Data Coordination
   - Apology-Oriented Programming
@@ -279,7 +279,7 @@
   - At most once (Sender -> Receiver)
   - At least once (Sender (ack) -> Receiver)
   - Exactly once (Sender (ack) -> Receiver (ack))
-- Tools 
+- Tools
   - Apache Kafka (pub/sub event logs)
   - Apache Flink (stream & batch processing)
   - Apache Storm (stream processing)
@@ -634,6 +634,26 @@ Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS
   - Spinnaker (Netflix)
   - Go (Thoughtworks)
 
+# Testing
+
+- Mocks - an object on which you set expectations (instantiate > behaviour > assert) 
+- Stubs - an object that provides predefined answers to method calls 
+- State testing - (Dummy > Stubs > Spies > Fakes) 
+- Automated testing
+  - Unit tests - testing components independently
+  - Integration tests - interaction and behaviour between systems
+  - Smoke tests - test that the product is ready for testing - verify critical tasks are working
+  - Sanity tests - verify new functionality and bug fixes
+  - Functional tests - verify business requirements
+  - Acceptance tests - acceptance criteria fulfilment
+  - Regression (end-to-end) tests - integration and functional tests
+  - Performance tests - speed and performance (JMeter, Gatling)
+    - readability
+    - composability
+    - correct math (percentile)
+    - distributed load generation
+  - Load tests - capacity at large scale usage
+
 # Infrastructure as Code
 
   - Terraform (Hashicorp)
@@ -751,7 +771,7 @@ Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS
     - TLS (H2 end-to-end encryption - used by most browser vendors / H2C clear text)
   - HTTP/3
     - Uses QUIC, a UDP datagram protocol-based, stream-multiplexed, and secure transport protocol
-    - Integrates with TLS 
+    - Integrates with TLS
 
 # CIDR
 
@@ -770,6 +790,47 @@ Classless Inter-Domain Routing - “OR” masking
   - Akamai (CDN - Content Delivery Network)
   - AWS CloudFront (CDN - Content Delivery Network) Caching
 
+### Observability
+
+- Three Pillars of Observability
+  - Logging
+  - Metrics
+    - Datadog - local agent receiving StatsD on port 8125, then batches to Datadog servers
+  - Tracing - view entire lifecycle of a request or action across several systems
+    - Datadog - local agent receiving UDP on port 5000, then batches to Datadog servers
+    - AWS X-Ray - provides gantt chart view of service processing over time etc
+    - OpenTelemetry - doesn’t have the need for a local agent but more like stream processors
+- SRE - Site Reliability Engineer
+  - Service-Level Objective (SLO) - lowest level of reliability you can get away with for a service
+  - Service-Level Agreement (SLA) - promise service availability meets a level over a period
+  - Service-Level Indicator (SLI) - direct measurement of service behavior (frequency of success)
+- Other monitoring services - Nagios, New Relic, Runscope (API Testing and Monitoring)
+  - Open source - Prometheus for logs, Grafana for visualisation
+  - Proprietary - Datadog
+- Logging APIs - log4net, Serilog
+- UI Usage
+  - segment.io (npm package)
+  - Amplitude (destination for segment.io for reporting)
+- Five Pillars of Data Observability
+  - Freshness: How up-to-date are your data tables?
+  - Distribution: Do your data values fall within an accepted range?
+  - Volume: Are your data tables complete?
+  - Schema: Who made what changes to your data, and when?
+  - Lineage: The full picture of your data landscape, including upstream sources, downstream ingestors, and who interacts with your data at which stages.
+- Data Lineage (tracing datasets) - Monte Carlo - data observability platform
+  - Lineage model
+    - destination table
+      - destination field 1 (source table 1 > source field 1)
+      - destination field 2 (source table 1 > source field 2, source field 3)
+- Incident life cycle
+  - TTD - Time to detect
+  - TTA - Time to acknowledge
+  - TTT - Time to triage
+  - TTR - Time to recover
+  - TTD - time to fix
+
+![Incident Life Cycle](resources/incident.life.cycle.jpg)
+
 # API Platforms
 
 - Apache ShenYu - pluggable architecture using registration centre
@@ -779,7 +840,7 @@ Classless Inter-Domain Routing - “OR” masking
   - security - Oauth2.0, JSON WebToken
 - Swagger - modelling language with powerful representation of your RESTful API
 - RAML - API modeling language that ThoughtWorks considers more lightweight than Swagger
-- Twilio replaces all the telecom hardware with an API for phone, VoIP, and messaging. 
+- Twilio replaces all the telecom hardware with an API for phone, VoIP, and messaging.
 - Stripe and Braintree for payment processing
 - Lob for printing
 - Spout for finance
@@ -818,6 +879,34 @@ Toolkit for building highly concurrent, distributed, and resilient message-drive
 - Swift (iOS mobile development)
 - Jetpack Compose (Google Android libraries)
 
+# CPU
+
+- RISC - Reduced Instruction Set Computing
+  - ARM - Advanced RISC Machine - Devices processors
+- CISC - Complex Instruction Set Computing
+  - x86 - Personal Computers (PC) processors
+- WinRT (ARM and x86) vs old Win32 (x86 only)
+- I/O Completion Ports (IOCP) - lightweight OS primitive, queues up asynchronous operations that emit notifications
+- 64-bit vs 32-bit
+  - the number of bits that a GPU (general purpose register) can hold in a processor
+  - the “bandwidth” of processing
+- GPU
+  - CPUs are optimised for low latency applications
+  - GPUs are optimised for high throughput
+
+# .NET
+
+- Compiler - Syntax Trees > Symbols > Binding & Flow Analysis > Emit IL
+- MSIL - Microsoft Intermediate Language - compiled language of source code C#/VB
+- JIT - Just in Time - runtime compiler to translate IL to machine code
+- CLR - Common Language Runtime - runtime that executes code & garbage collects
+
+### Garbage Collection
+
+- Generation 0 - short-lived objects, temporary variables
+- Generation 1 - buffer between short-lived objects and long-lived objects
+- Generation 2 - long-lived objects, static data alive for duration of application process
+
 # Javascript
 
 ### Frameworks
@@ -825,6 +914,28 @@ Toolkit for building highly concurrent, distributed, and resilient message-drive
 - React
 - Angular
 - Qwik - Resumability - focuses on optimizing Javascript with lazy loading, prefetching on background threads
+- Dart
+  - client-optimized language by Google
+- React Virtuoso - a framework to visualize large data sets
+- IIFE - Immediately invoked function expression `(function() { /*code*/ }());`
+- Modular
+  - AMD - require.js (define module, require module as dependency) - client
+  - CommonJS - node.js (exports module, require module into variable) - server
+- Testing (QA - Quality Assurance and QC - Quality Control)
+  - Jasmine (Behaviour-Driven Javascript for unit testing)
+  - QUnit (Javascript Unit Testing)
+  - Mocha (Javascript Unit Testing)
+  - Wallaby.js  (Javascript Unit Testing) - Rich IDE experience
+- Non-browser Engines - V8 | ChakraCore | SpiderMonkey
+
+### React
+
+```javascript
+  const [variable, setVariable] = useState<int>(4);
+  useEffect(() => { ... }, [variableThatChangesValue]);
+  return ( <div>{variable}</div> );
+  export {MyComponent};
+```
 
 ### Web Workers
 
@@ -855,7 +966,7 @@ onmessage = function(e) {
   "States": {
     "ProcessTransaction": {
         "Type" : "Choice",
-        "Choices": [ 
+        "Choices": [
           {
             "Variable": "$.TransactionType",
             "StringEquals": "PURCHASE",
@@ -889,15 +1000,15 @@ Ingestion of json file with an array of `order.items` into s3 parquet file
 ```sql
 steps:
   - dataFrameName: orders_dataframe
-    sql: 
-      SELECT 
+    sql:
+      SELECT
         CAST(order.id AS BIGINT) AS `order_id`,
         order.version AS `order_version`,
         order.source AS `order_source`,
         item.id AS `item_id`,
         123 AS `batch_id`,
         CAST(date_format(current_timestamp(), 'yyyyMMddHHmmss') AS BIGINT) AS `process_time`
-      FROM 
+      FROM
         order_raw
       LATERAL VIEW OUTER
         explode(order.items) AS item
@@ -940,3 +1051,42 @@ STORED AS PARQUET LOCATION 's3a://s3_bucket/s3_file_path';
 - Gremlin - chaos-engineering-as-a-service
 - LinkedOut (LinkedIn)
 - Filibuster - test microservice applications for resilience
+
+# Legacy
+
+- Software Development Lifecycle (Obsolete Waterfall approach)
+  - General (Executive summary | Introduction | Conclusion)
+  - Investigation (Business Functions | System Requirements | Risks | Assumptions)
+  - Design (Use Cases | Use Case Diagram | Class Diagram | Database Schema)
+- IIS features that Kestrel doesn’t have
+  - Port 80/443 forwarding via host headers
+  - Process lifetime management (monitors asp.net processes crashing to restart them)
+  - SSL Certificate management
+- Windows Server Family (Component Containers)
+  - System.Windows.Forms.Form
+  - System.Web.UI.Page
+  - System.ComponentModel.Container
+- WCF
+  - `[ServiceContract] public interface IServiceInterface`
+  - `[OperationContract] double SquareRoot(int root);`
+  - `[DataContract] public class PurchaseOrder`
+  - `[DataMember] public int PurchaseOrderId`
+  - Message patterns include request/reply, one-way messaging, or duplex exchange
+  - Transport protocols include SOAP/REST/ATOM on HTTP, TCP, or MSMQ (high latency)
+  - `<protocolMapping>` can be specified to have an "http" or “https” scheme
+  - BasicHttpBinding - Basic web service communication. Exposes WCF services as legacy ASMX web services. Used for interoperability. No security by default.
+  - WSHttpBinding - Web services with WS-* support. Supports transactions.
+  - WSDualHttpBinding - Web services with duplex contract and transaction support.
+  - WSFederationHttpBinding - Web services with federated security. Supports transactions.
+  - MsmqIntegrationBinding - Communication directly with MSMQ applications. Supports transactions.
+  - NetMsmqBinding - Communication between WCF applications by using queuing. Supports transactions.
+  - NetNamedPipeBinding - Communication between WCF applications on same computer. Supports duplex contracts and transactions.
+  - NetPeerTcpBinding - Communication between computers across peer-to-peer services. Supports duplex contracts.
+  - NetTcpBinding - Communication between WCF applications across computers. Supports duplex contracts and transactions.
+- Windows Server Containers (Docker)
+  - Container Host - Physical or Virtual machine that hosts docker containers.
+  - Container Image - snapshot to create new docker containers
+  - Sandbox - captures the state of the docker image (regedit, file changes etc)
+  - Container OS Image - The Operating System environment installed on docker image
+  - Container Repository - repository listing all docker containers stored on host
+  - Container Management Technology - manage containers from PowerShell or Docker
