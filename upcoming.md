@@ -18,7 +18,7 @@
 * Elastic Releases Terraform Providers for the Elastic Stack and Elastic Cloud
 
 - YARP, a toolkit that can be used to build custom reverse proxies using .NET
-- .C#11 List Patterns  - [1, 2, .., 10]
+- C#11 List Patterns  - [1, 2, .., 10]
 - C#11 Null check parameters s!! (if (s is null) throw new ArgumentNullException(...) )
 
 * Kestra - State machine in JVM
