@@ -115,6 +115,7 @@
 - SNS - Simple Notification Service - pushed based A2A (App to App) or A2P (App to person)
   - pub/sub to SQS, Lambda, HTTPS endpoints, parallel processing, Kinesis Data Firehose
 - SES - Simple Email Service
+- Amazon MSK - Managed Streaming for Apache Kafka
 - Kinesis Streams - event-streaming as opposed to push notification
   - producers & consumers, data records are sharded by a partition key
   - time-based sequence of events
