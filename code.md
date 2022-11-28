@@ -2,6 +2,14 @@
 
 ## Snowflake
 
+
+### Latest Event Record
+
+```sql
+SELECT * FROM DATABASE1.SCHEMA1.TABLE1
+QUALIFY ROW_NUMBER() OVER (PARTITION BY MID ORDER BY EVENT_DATE DESC) = 1
+```
+
 ### Column Functions
 
 ```sql
