@@ -405,6 +405,8 @@
   - Durable - on commit, data is persisted regardless of crashing (backups)
 - DDL - Data Definition Language (CREATE TABLE, CREATE PROC, DROP TABLE, DROP PROC)
 - DML - Data Manipulation Language (INSERT, UPDATE, DELETE, SELECT)
+- DCL - Data Control Language (GRANT, REVOKE)
+- TCL - Transaction Control Language (COMMIT, ROLLBACK)
 - Principals (Logins/Users) & Securables (Tables/Views/Stored Procedures) & Permissions (Roles)
   - Login - Server level principal used with password
   - User - Database level principal used with login
