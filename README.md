@@ -403,8 +403,8 @@
   - Consistent - no unfinished updates on commit/rollback (referential integrity)
   - Isolated - no intermediate statements visible to other transactions
   - Durable - on commit, data is persisted regardless of crashing (backups)
-- DDL - Data Definition Language (CREATE TABLE, CREATE PROC)
-- DML - Data Manipulation Language (INSERT, UPDATE, DROP, SELECT)
+- DDL - Data Definition Language (CREATE TABLE, CREATE PROC, DROP TABLE, DROP PROC)
+- DML - Data Manipulation Language (INSERT, UPDATE, DELETE, SELECT)
 - Principals (Logins/Users) & Securables (Tables/Views/Stored Procedures) & Permissions (Roles)
   - Login - Server level principal used with password
   - User - Database level principal used with login
