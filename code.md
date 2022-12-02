@@ -13,7 +13,29 @@ QUALIFY ROW_NUMBER() OVER (PARTITION BY MID ORDER BY EVENT_DATE DESC) = 1
 ### Window Functions
 
 ```sql
+SELECT
+  DAY,
+  SALES_TODAY, 
+  RANK() OVER (ORDER BY SALES_TODAY DESC) AS RANK,
+  SUM(SALES_TODAY) OVER () AS TOTAL_SALES,
+  SUM(SALES_TODAY) OVER (ORDER BY DAY ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS SALES_SO_FAR,
+  AVG(SALES_TODAY) OVER (ORDER BY DAY ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS 3_DAY_MOVING_AVERAGE
+FROM STORE_SALES
+ORDER BY DAY;
+```
 
+```bash
++-----+-------+------+--------------+-------------+----------------+
+| Day | Today | Rank | Sales So Far | Total Sales | Moving Average |
+|-----+-------+------+--------------+-------------|----------------+
+|   1 |    10 |    4 |           10 |          84 |           10.0 |
+|   2 |    14 |    3 |           24 |          84 |           12.0 |
+|   3 |     6 |    5 |           30 |          84 |           10.0 |
+|   4 |     6 |    5 |           36 |          84 |            9.0 |
+|   5 |    14 |    3 |           50 |          84 |           10.0 |
+|   6 |    16 |    2 |           66 |          84 |           11.0 |
+|   7 |    18 |    1 |           84 |          84 |           12.0 |
++-----+-------+------+--------------+-------------+----------------+
 ```
 
 ### Column Functions
