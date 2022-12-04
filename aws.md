@@ -60,6 +60,7 @@
 - Lambda - Serverless functions
   - SAM - Serverless Application Model - yaml config to deploy. Built on CloudFormation
   - “Aliases” - pointer to specific versions
+  - MicroVM framework is the underlying technology
 - Step Functions - low-code visual workflow service used to orchestrate AWS services
   - Distributed transactions using human interaction pattern, chaining pattern, saga pattern
 
