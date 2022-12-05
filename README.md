@@ -472,6 +472,11 @@ Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS
 
 # Big Data
 
+- Concepts
+  - Facts - a specific occurrence or transaction (e.g. sale of a product)
+  - Measures - details about a fact - qualitative (e.g. Product ID) or quantitative (e.g. price of a product)
+  - Dimensions - specific characteristics of a measure (e.g. colour, size)
+  - Filters - subset of date (e.g. time)
 - Definition
   - Volume (Petabytes of data stored)
   - Velocity (Terabytes of data collected i.e. IoT)
