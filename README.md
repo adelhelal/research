@@ -538,7 +538,7 @@ Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS
   - Windowing operations, stateless transformations (filter, map), stateful (joins, aggregations)
   - `KStream<K,V>` allows for messages consumed from multiple topics to be used as a stream of records
 - Change Data Capture (CDC)
-  - Database log scanner - Debezium - consumes data from transaction log
+  - Database log scanner - Debezium - consumes data from transaction log - built on Kafka
 - Data Storage Techniques
   - Bitmapping
   - HyperLogLog (HLL) - (with Postgres)
