@@ -482,6 +482,9 @@ Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS
   - Velocity (Terabytes of data collected i.e. IoT)
   - Variety (Semi-structured data)
   - Complexity (From many sources)
+  - Schema Types
+    - Star Schema - fact table at the center contains keys to every dimension
+    - Snowflake Schema - fact table at the center contains keys to normalized dimensions which link to additional dimensions
 - ETL (Extract, transform, load)
   - Matillion (load into Redshift/Snowflake)
   - AWS Glue
