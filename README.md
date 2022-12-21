@@ -1007,6 +1007,11 @@ Toolkit for building highly concurrent, distributed, and resilient message-drive
   - Mocha (Javascript Unit Testing)
   - Wallaby.js  (Javascript Unit Testing) - Rich IDE experience
 - Non-browser Engines - V8 | ChakraCore | SpiderMonkey
+- Bundlers
+  - Vite
+  - Webpack
+  - Grunt
+  - Babel
 
 ### React
 
