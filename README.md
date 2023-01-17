@@ -236,6 +236,11 @@
   - Causal consistency (Riak, Red Bull’s Eventuate)
   - Saga Pattern - Distributed transactions
 
+* Types
+  * Container based microservices
+  * WebAssembly based microservices
+    * Spin - Fermyon's open-source framework to build cloud microservices using WebAssembly
+
 # Eventual Consistency
 
 - CRDT (Conflict-Free Replicated Data Type) (Information)
@@ -285,6 +290,9 @@
   - Apache Storm (stream processing)
   - Apache Spark (micro batch processing)
   - Amazon Kinesis (pub/sub event logs)
+    - Kinesis Data Streams - event log (base 64 text-encoded data)
+    - Kinesis Data Firehose - batch write logs to S3/Redshift/ElasticSearch (base 64 text-encoded data)
+    - Kinesis Data Analytics (base 64 text-encoded data)
   - Azure Event Hub (pub/sub event logs)
 
 # Kubernetes
@@ -464,7 +472,7 @@ Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS
 # NewSQL
 
 - RDBMS providing scalability of NoSQL for transaction processing workloads & maintains ACID
-- AWS Aurora, Azure Cosmos DB, Yugabyte, CockroachDB, Google Spanner, MemSQL, Clustrix, VoltDB, NuoDB
+- AWS Aurora, Azure Cosmos DB, Google AlloyDB, Yugabyte, CockroachDB, Google Spanner, MemSQL, Clustrix, VoltDB, NuoDB
 - SQL Engines (MySQL Cluster, Infobright, TokuDB)
 - Transparent Sharing (ScaleBase)
 - In Memory Databases (Hekaton SQL Server 20214, Apache Geode)
@@ -574,13 +582,34 @@ Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS
 
 - Causal <-> Correlation
 - Supervised learning e.g. Fraud detection, recommendation engine, spam filtering
-  - Labeling datasets (Regression and Naive Bayes Classification, Alternating Least Squares)
+  - Labeled datasets (Regression algorithm e.g. Naive Bayes Classification, Alternating Least Squares)
 - Unsupervised learning e.g. Social networks, language prediction
-  - Unlabelled datasets (AFK-MC², k-means and Principle Component Analysis algorithm)
+  - Unlabelled datasets (Principle Component Analysis algorithm e.g. AFK-MC², k-means)
+  - Clustering
 - Semi-supervised Learning e.g. Image categorization, Voice recognition
-  - Labeled and Unlabelled datasets (Regression and Classification - Support vector machines, Decision Trees [Gradient-Boosted Trees and Random Forests])
+  - Labeled and Unlabelled datasets (Regression and Classification e.g. Support vector machines, Decision Trees [Gradient-Boosted Trees and Random Forests])
 - Reinforcement learning e.g. Artificial Intelligence
   - Maximize a numerical reward goal
+
+### Skills
+
+1. Mathematics
+  - Linear algebra (35%)
+  - Probability Theory and Statistics (25%)
+  - Multivariate Calculus (15%)
+  - Algorithms and Optimization (15%)
+  - Others (10%)
+2. Familiarity with basic algorithms and data structures
+3. Understanding OOP
+4. Experience with at least one programming language
+  - Python for natural language processing
+  - R for sentiment analysis
+5. Knowledge of Big Data frameworks (e.g. Hadoop/Spark)
+6. Knowledge of machine learning algorithms and models
+7. Experience with data mining and modeling techniques
+8. Good coding practices and habits
+9. Communication skills
+10. Passion for learning new things
 
 ### Steps
 
@@ -798,6 +827,9 @@ Classless Inter-Domain Routing - “OR” masking
 
 # Cache
 
+- Concepts
+  - Low latency (lag)
+  - High throughput (amount)
 - Algorithms
   - LRU - Least Recently Used
   - MRU - Most Recently Used
@@ -993,6 +1025,7 @@ Toolkit for building highly concurrent, distributed, and resilient message-drive
 
 - React
 - Angular
+- Vercel
 - Qwik - Resumability - focuses on optimizing Javascript with lazy loading, prefetching on background threads
 - Dart
   - client-optimized language by Google
@@ -1012,6 +1045,10 @@ Toolkit for building highly concurrent, distributed, and resilient message-drive
   - Webpack
   - Grunt
   - Babel
+
+### Tools
+
+- Vanilla Extract - Modern CSS in javascript
 
 ### React
 
@@ -1113,7 +1150,7 @@ output:
 Import from parquet file into table
 ```sql
 
-DROP TABLE if exists orders;
+DROP TABLE IF EXISTS orders;
 CREATE EXTERNAL TABLE IF NOT EXISTS orders (
     `order_id` STRING,
     `order_version` INT,
