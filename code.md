@@ -2,7 +2,6 @@
 
 ## Snowflake
 
-
 ### Latest Event Record
 
 ```sql
