@@ -387,7 +387,19 @@
 | Transactional updates | | Bulk inserts |
 | Structured Relational Data - normalised to reduce redundant data. Optimized to maximize efficiency of updating data (insert, update, delete) | Simple fast lookups for Hierarchical collection of records; map-reduce over many nodes etc | Store large quantities of historical data; enable fast, complex queries across data |
 
-# Postgres
+# Relational Databases
+
+- ACID Rule (Transactions)
+  - Atomic - independent of previous and subsequent transactions
+  - Consistent - no unfinished updates on commit/rollback (referential integrity)
+  - Isolated - no intermediate statements visible to other transactions
+  - Durable - on commit, data is persisted regardless of crashing (backups)
+- DDL - Data Definition Language (CREATE TABLE, CREATE PROC, DROP TABLE, DROP PROC)
+- DML - Data Manipulation Language (INSERT, UPDATE, DELETE, SELECT)
+- DCL - Data Control Language (GRANT, REVOKE)
+- TCL - Transaction Control Language (COMMIT, ROLLBACK)
+
+## Postgres
 
 - Features
   - Performance
@@ -404,17 +416,8 @@
 
 ![Postgres](resources/postgres.png)
 
-# SQL Server
+## SQL Server
 
-- ACID Rule (Transactions)
-  - Atomic - independent of previous and subsequent transactions
-  - Consistent - no unfinished updates on commit/rollback (referential integrity)
-  - Isolated - no intermediate statements visible to other transactions
-  - Durable - on commit, data is persisted regardless of crashing (backups)
-- DDL - Data Definition Language (CREATE TABLE, CREATE PROC, DROP TABLE, DROP PROC)
-- DML - Data Manipulation Language (INSERT, UPDATE, DELETE, SELECT)
-- DCL - Data Control Language (GRANT, REVOKE)
-- TCL - Transaction Control Language (COMMIT, ROLLBACK)
 - Principals (Logins/Users) & Securables (Tables/Views/Stored Procedures) & Permissions (Roles)
   - Login - Server level principal used with password
   - User - Database level principal used with login
@@ -550,6 +553,17 @@ Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS
   - `KStream<K,V>` allows for messages consumed from multiple topics to be used as a stream of records
 - Change Data Capture (CDC)
   - Database log scanner - Debezium - consumes data from transaction log - built on Kafka
+    - MySQL server must have binlog enabled
+      - GTIDs - Global transaction identifiers uniquely identify transactions that occur on a server within a cluster
+    - Schema history topic - keeps records of DDL statements (schema changes)
+      - connector must be able to identify what the schema was at the time each insert, update, or delete operation was recorded
+    - Incremental snapshots
+      - Captures each row sorted by primary key and emits a `READ` event, representing the value of the row from a snapshot
+      - Streaming process continues to detect `INSERT`, `UPDATE`, or `DELETE` and emits events to Kafka
+      - Snapshot windows - buffering scheme to resolve collisions by delivering snapshot `READ` records to a memory buffer, and compares them to incoming streamed events by primary key
+        - no matches found, streamed event records are sent directly to the destination topic in Kafka
+        - matches discard the buffered `READ` event, and writes the streamed record to the destination topic in Kafka
+        - when the window closes, emits remaining `READ` events
 - Data Storage Techniques
   - Bitmapping
   - HyperLogLog (HLL) - (with Postgres)
@@ -735,6 +749,22 @@ Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS
     - Copy contents into SSH key settings for e.g. GitHub
 - Unified ID 2.0 - the trade desk - demand-side platform (DSP)
   - Replacement to third-party cookies from Chrome
+
+- XSS - Cross-Site Scripts
+  - Reflected Cross-Site Forgery
+    - using GET url in <a> tag to redirect to another site using inline javascript to overwrite href
+  - Stored Cross-Site Forgery
+    - Pass in unvalidated input from browser
+    - Fix: Encode Html
+  - Cross-Site Request Forgery (CSRF)
+    - phishing used to redirect to a logged in trusted site to perform a bad action while logged in
+    - Fix: anti-forgery tokens
+      - Synchronizer Token Pattern given to client after authentication (CSRF_TOKEN=7AF4...)
+      - Double-Submit Cookie Pattern - server sends two random tokens as cookie and hidden form, and request must include both
+      - Same Site Cookies - only accept cookies with the same protocol, port and host
+
+- SQL Injection
+  - Fix: Prepared statements
 
 ### Encryption
 
@@ -1020,6 +1050,34 @@ Toolkit for building highly concurrent, distributed, and resilient message-drive
 - Generation 2 - long-lived objects, static data alive for duration of application process
 
 # Javascript
+
+### JWT
+
+JSON Web Token - Session and token-based authentication
+
+`javascript
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4uZG9lIn0.jxWz0c_9YC3INAlpUGegBtTgmDUA12Krsjtr1P2qgbw
+`
+
+- First part - header - algorithm and token type
+`javascript
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+`
+
+- Secont part - non-sensitive arbitrary data
+`javascript
+{
+  "username": "john.doe"
+}
+`
+
+- Third part - signature - hash of the first two parts using a secret key
+`javascript
+URLSAFE_BASE64(HMACSHA256('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4uZG9lIn0', '$uper$ecret')) => jxWz0c_9YC3INAlpUGegBtTgmDUA12Krsjtr1P2qgbw
+`
 
 ### Frameworks
 

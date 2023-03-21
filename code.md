@@ -56,6 +56,17 @@ ALTER TABLE DATABASE1.SCHEMA1.TABLE2
 ADD COLUMN LAST_UPDATED_TIMESTAMP_EPOCH_MILLIS NUMBER(38, 0) AS DATE_PART('EPOCH_MILLISECOND', LAST_UPDATED_TIMESTAMP_TZ);
 ```
 
+## mySQL
+
+### Binlog
+
+Binary log is transactional logs that records all operations in the order in which they are committed to the database. MySQL uses the binlog for replication and recovery
+
+```sql
+SELECT variable_value as "BINARY LOGGING STATUS (log-bin) ::"
+FROM information_schema.global_variables WHERE variable_name='log_bin';
+```
+
 ## CSS
 
 ### Dark Mode
