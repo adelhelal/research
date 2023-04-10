@@ -591,6 +591,14 @@ Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS
       HLL hll = HLL.fromBytes(value);
       var distinct = hll.cardinality();
       ```
+### Slowly Changing Dimensions (SCD)
+
+- Type 0 - Ignore any changes and audit the changes
+- Type 1 - Overwrite the changes
+- Type 2 - History will be added as a new row
+- Type 3 - History will be added as a new column
+- Type 4 - A new dimension will be added
+- Type 5 - Combination of Type 2 and Type 3
 
 # Machine Learning
 
