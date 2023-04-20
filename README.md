@@ -147,7 +147,7 @@
     - Cassandra, DynamoDB
   - Partition Tolerance (system operates despite arbitrary partitioning due to network failures)
 
-* Four Primitives / Categories
+* Four Categories / Primitives
   * Lifecycle - Packaging, Healthcheck, Deployment, Rollback, Scaling, Configuration
     * Kubernetes, Knative
   * Networking - Service discovery, Load balancing, Retry, Timeout, Circuit-breakers, Rate limiting, Observability
