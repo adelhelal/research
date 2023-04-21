@@ -1062,6 +1062,43 @@ Toolkit for building highly concurrent, distributed, and resilient message-drive
 
 # Javascript
 
+### Echosystem
+
+- node.js - 
+- npm - node package manager
+- module - import statement formats
+  - ES6 - `import React from 'react';`
+  - CommonJS - importing `const doSomething = require('./doSomething.js');` exporting `module.exports = function doSomething(n) {}`
+  - AMD - `define(['dep1', 'dep2'], function (dep1, dep2) { return function () {}; });`
+  - UMD - pattern to configure several module systems `(function (root, factory) { ... }(this, function ($, _) { ... }));`
+
+### Frameworks
+
+- React
+- Angular
+- Vercel
+- Qwik - Resumability - focuses on optimizing Javascript with lazy loading, prefetching on background threads
+- Dart
+  - client-optimized language by Google
+- React Virtuoso - a framework to visualize large data sets
+- IIFE - Immediately invoked function expression `(function() { /*code*/ }());`
+- Modular
+  - AMD - require.js (define module, require module as dependency) - client
+  - CommonJS - node.js (exports module, require module into variable) - server
+- Testing (QA - Quality Assurance and QC - Quality Control)
+  - Jasmine (Behaviour-Driven Javascript for unit testing)
+  - QUnit (Javascript Unit Testing)
+  - Mocha (Javascript Unit Testing)
+  - Wallaby.js  (Javascript Unit Testing) - Rich IDE experience
+- Non-browser Engines - V8 | ChakraCore | SpiderMonkey
+- Bundlers
+  - Webpack
+    - loaders - used to bundle non-js files (css-loader, style-loader, ts-loader)
+  - Rollup
+  - Vite
+  - Grunt
+  - Babel
+
 ### JWT
 
 JSON Web Token - Session and token-based authentication
@@ -1089,31 +1126,6 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4uZG9lIn0.jxWz0c_9YC3
 `javascript
 URLSAFE_BASE64(HMACSHA256('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4uZG9lIn0', '$uper$ecret')) => jxWz0c_9YC3INAlpUGegBtTgmDUA12Krsjtr1P2qgbw
 `
-
-### Frameworks
-
-- React
-- Angular
-- Vercel
-- Qwik - Resumability - focuses on optimizing Javascript with lazy loading, prefetching on background threads
-- Dart
-  - client-optimized language by Google
-- React Virtuoso - a framework to visualize large data sets
-- IIFE - Immediately invoked function expression `(function() { /*code*/ }());`
-- Modular
-  - AMD - require.js (define module, require module as dependency) - client
-  - CommonJS - node.js (exports module, require module into variable) - server
-- Testing (QA - Quality Assurance and QC - Quality Control)
-  - Jasmine (Behaviour-Driven Javascript for unit testing)
-  - QUnit (Javascript Unit Testing)
-  - Mocha (Javascript Unit Testing)
-  - Wallaby.js  (Javascript Unit Testing) - Rich IDE experience
-- Non-browser Engines - V8 | ChakraCore | SpiderMonkey
-- Bundlers
-  - Vite
-  - Webpack
-  - Grunt
-  - Babel
 
 ### Tools
 
