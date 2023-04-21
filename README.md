@@ -1068,7 +1068,9 @@ Toolkit for building highly concurrent, distributed, and resilient message-drive
 - npm - node package manager
 - module - import statement formats
   - ES6 - `import React from 'react';`
-  - CommonJS - importing `const doSomething = require('./doSomething.js');` exporting `module.exports = function doSomething(n) {}`
+  - CommonJS
+    - importing `const doSomething = require('./doSomething.js');`
+    - exporting `module.exports = function doSomething(n) {}`
   - AMD - `define(['dep1', 'dep2'], function (dep1, dep2) { return function () {}; });`
   - UMD - pattern to configure several module systems `(function (root, factory) { ... }(this, function ($, _) { ... }));`
 
