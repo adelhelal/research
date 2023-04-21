@@ -1062,37 +1062,18 @@ Toolkit for building highly concurrent, distributed, and resilient message-drive
 
 # Javascript
 
-### Echosystem
+### Frameworks
 
-- node.js - 
+
+- Node.js - runtime environment for executing JavaScript code
 - npm - node package manager
-- module - import statement formats
+- Modules - import statement formats
   - ES6 - `import React from 'react';`
   - CommonJS
     - importing `const doSomething = require('./doSomething.js');`
     - exporting `module.exports = function doSomething(n) {}`
-  - AMD - `define(['dep1', 'dep2'], function (dep1, dep2) { return function () {}; });`
-  - UMD - pattern to configure several module systems `(function (root, factory) { ... }(this, function ($, _) { ... }));`
-
-### Frameworks
-
-- React
-- Angular
-- Vercel
-- Qwik - Resumability - focuses on optimizing Javascript with lazy loading, prefetching on background threads
-- Dart
-  - client-optimized language by Google
-- React Virtuoso - a framework to visualize large data sets
-- IIFE - Immediately invoked function expression `(function() { /*code*/ }());`
-- Modular
-  - AMD - require.js (define module, require module as dependency) - client
-  - CommonJS - node.js (exports module, require module into variable) - server
-- Testing (QA - Quality Assurance and QC - Quality Control)
-  - Jasmine (Behaviour-Driven Javascript for unit testing)
-  - QUnit (Javascript Unit Testing)
-  - Mocha (Javascript Unit Testing)
-  - Wallaby.js  (Javascript Unit Testing) - Rich IDE experience
-- Non-browser Engines - V8 | ChakraCore | SpiderMonkey
+  - AMD - require.js - `define(['dep1', 'dep2'], function (dep1, dep2) { return function () {}; });`
+  - UMD - pattern to configure several module systems - `(function (root, factory) { ... }(this, function ($, _) { ... }));`
 - Bundlers
   - Webpack
     - loaders - used to bundle non-js files (css-loader, style-loader, ts-loader)
@@ -1100,6 +1081,21 @@ Toolkit for building highly concurrent, distributed, and resilient message-drive
   - Vite
   - Grunt
   - Babel
+- SPA - Single page apps (UI)
+  - React
+  - Angular
+  - Vercel
+  - Qwik - Resumability - focuses on optimizing Javascript with lazy loading, prefetching on background threads
+  - Dart
+    - client-optimized language by Google
+  - React Virtuoso - a framework to visualize large data sets
+- IIFE - Immediately invoked function expression `(function() { /*code*/ }());`
+- Testing (QA - Quality Assurance and QC - Quality Control)
+  - Jasmine (Behaviour-Driven Javascript for unit testing)
+  - QUnit (Javascript Unit Testing)
+  - Mocha (Javascript Unit Testing)
+  - Wallaby.js  (Javascript Unit Testing) - Rich IDE experience
+- Non-browser Engines - V8 | ChakraCore | SpiderMonkey
 
 ### JWT
 
