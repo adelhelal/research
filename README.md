@@ -1075,8 +1075,7 @@ Toolkit for building highly concurrent, distributed, and resilient message-drive
   - AMD - require.js - `define(['dep1', 'dep2'], function (dep1, dep2) { return function () {}; });`
   - UMD - pattern to configure several module systems - `(function (root, factory) { ... }(this, function ($, _) { ... }));`
 - Bundlers
-  - Webpack
-    - loaders - used to bundle non-js files (css-loader, style-loader, ts-loader)
+  - Webpack - loaders - used to bundle non-js files (css-loader, style-loader, ts-loader)
   - Rollup
   - Vite
   - Grunt
@@ -1086,8 +1085,7 @@ Toolkit for building highly concurrent, distributed, and resilient message-drive
   - Angular
   - Vercel
   - Qwik - Resumability - focuses on optimizing Javascript with lazy loading, prefetching on background threads
-  - Dart
-    - client-optimized language by Google
+  - Dart - client-optimized language by Google
   - React Virtuoso - a framework to visualize large data sets
 - IIFE - Immediately invoked function expression `(function() { /*code*/ }());`
 - Testing (QA - Quality Assurance and QC - Quality Control)
