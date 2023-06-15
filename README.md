@@ -739,6 +739,13 @@ Scale-out horizontal distributed systems vs Scale-up vertical upgrading in RDBMS
 - Http Authorization (401 Unauthorized / 403 Forbidden)
 - Http Authentication
   - Basic (Username:Password base64)
+    ```java
+      val httpHeaders = HttpHeaders()
+      val basicAuthDetails = String.format("%s:%s", userName, password)
+      val bytes = Base64.encodeBase64(basicAuthDetails.toByteArray(Charsets.UTF_8))
+      val basicAuthCredentials = String.format("Basic %s", String(bytes))
+      httpHeaders.add(AUTHORIZATION, basicAuthCredentials)
+    ```
   - Digest (uses MD4)
   - Tokens (OAuth / OAuth2 / OpenId Connect)
     - Request token (Client > Server)
@@ -896,6 +903,7 @@ Classless Inter-Domain Routing - “OR” masking
     - Datadog - local agent receiving UDP on port 5000, then batches to Datadog servers
     - AWS X-Ray - provides gantt chart view of service processing over time etc
     - OpenTelemetry - doesn’t have the need for a local agent but more like stream processors
+    - jaeger - uses OpenTelemetry instrumentation and SDKs
 - SRE - Site Reliability Engineer
   - Service-Level Objective (SLO) - lowest level of reliability you can get away with for a service
   - Service-Level Agreement (SLA) - promise service availability meets a level over a period
