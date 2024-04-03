@@ -235,6 +235,12 @@
   - Event-Driven Architecture
   - Causal consistency (Riak, Red Bull’s Eventuate)
   - Saga Pattern - Distributed transactions
+    - Choreography
+      - individual microservices consume the events, perform the activity, pass event to the next service
+      - there is no centralized coordinator, making communication between the services more difficult
+    - Orchestration
+      - all microservices linked to centralized coordinator that orchestrates services in predefined order
+      - facilitates visibility, monitoring, and error handling
 
 * Types
   * Container based microservices
