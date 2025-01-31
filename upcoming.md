@@ -30,3 +30,6 @@
 - Digital transformation - from product centric to customer centric e.g. bank with multiple logins to their prod
 - Change Intelligence - monitoring to understand when something changed
 - companies developing loosely coupled systems were better set up to work remotely
+
+- IaSQL
+postgres://v16udtyu:vrnYH*5BMCS.*1vH@localhost/BankingDevAdmin
