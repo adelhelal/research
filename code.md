@@ -1,5 +1,27 @@
 # Code
 
+## Ports and Adapters
+
+```bash
+ports/
+│   ├── Use Cases Interfaces        
+│   ├── Outgoing clients (e.g. Httpclients, emailService) 
+│
+adapters/
+│   ├── Rest Controllers (NO business logic here)
+│   ├── Event Listeners (NO business logic here)
+│   ├── Outgoing client implementations (e.g. http client implementations)
+│   └── Extensions.kt
+├── model/
+│      └── Application internal model
+│
+app/
+├── Use Cases implementations (business logic)
+├── JPA @Entity classes
+├── JPA repository interface
+└── Persistence Interfaces 
+```
+
 ## Snowflake
 
 ### Latest Event Record
