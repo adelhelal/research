@@ -1019,13 +1019,23 @@ Toolkit for building highly concurrent, distributed, and resilient message-drive
 
 - Interactive Programming - takes single user input expressions and evaluates
 
-# Reporting - Charts
+# Reporting
+
+## Charts
 
 - D3
 - Flot
 - HighCharts
 - XPlot (F#)
 - Dundas
+
+# Diagrams
+
+- C4 model
+  > System Context (The system plus users and system dependencies)
+    > Containers (The overall shape of the architecture and technology choices)
+      > Components (Logical components and their interactions within a container)
+        > Code (Component implemententation details e.g. classes)
 
 # Agile Project Management
 
